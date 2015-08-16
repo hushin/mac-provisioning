@@ -1,0 +1,223 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  sudo: no
+  vars:
+    homebrew_taps:
+      - homebrew/binary
+      - homebrew/dupes
+      - caskroom/cask
+      - caskroom/fonts
+      - railwaycat/emacsmacport
+      - sanemat/font
+      - motemen/ghq
+    homebrew_packages:
+      - { name: readline }
+      - { name: openssl }
+      - { name: openssl, state: linked, install_options: force }
+      - { name: python }
+      - { name: ansible }
+      - { name: coreutils }
+      - { name: git }
+      - { name: zsh, install_options: disable-etcdir }
+      - { name: wget }
+      - { name: curl }
+      - { name: tree }
+      - { name: nkf }
+      - { name: jq }
+      - { name: go }
+      - { name: peco }
+      - { name: hub }
+      - { name: tig }
+      - { name: rbenv }
+      - { name: ruby-build }
+      - { name: lha }
+      - { name: mysql }
+      - { name: sqlite }
+      - { name: redis }
+      - { name: imagemagick }
+      - { name: xz }
+      - { name: nodebrew }
+      - { name: tmux }
+      - { name: reattach-to-user-namespace }
+      - { name: phantomjs }
+      - { name: graphviz }
+      - { name: autojump }
+      - { name: gibo }
+      - { name: source-highlight }
+      - { name: trash }
+      - { name: ghq }
+      # - { name: flow }
+      # - { name: socat }
+      # - { name: w3m }
+      # - { name: packer }
+      # - { name: tofrodos }
+      # - { name: cmake }
+      # - { name: autoconf }
+      # - { name: automake }
+      # - { name: pkg-config }
+      # - { name: ctags }
+      # - { name: lv }
+      # - { name: fish }
+      # - { name: mercurial }
+      # - { name: rlwrap }
+      # - { name: direnv }
+    homebrew_cask_packages:
+      - { name: emacs-mac }
+      - { name: dropbox }
+      - { name: 1password }
+      - { name: iterm2 }
+      - { name: google-japanese-ime }
+      - { name: grandperspective }
+      - { name: firefox }
+      - { name: google-chrome }
+      - { name: adobe-reader }
+      - { name: java }
+      - { name: skype }
+      # - { name: slack }
+      - { name: sourcetree }
+      - { name: github-desktop }
+      # - { name: gitx }
+      - { name: karabiner }
+      - { name: seil }
+      - { name: flux }
+      - { name: dash }
+      - { name: skitch }
+      - { name: seashore }
+      - { name: atom }
+      - { name: kobito }
+      # - { name: webstorm }
+      # - { name: phpstorm }
+      # - { name: intellij-idea }
+      # - { name: vagrant }
+      # - { name: virtualbox }
+      - { name: pandoc }
+      - { name: alfred }
+      - { name: cooviewer }
+      - { name: clipmenu }
+      - { name: evernote }
+      # - { name: android-studio }
+      # - { name: genymotion }
+      # - { name: sublime-text } # 3がほしい
+      # - { name: startninja }
+      # - { name: pckeyboardhack }
+      - { name: bettertouchtool }
+      - { name: licecap }
+      - { name: electron }
+      - { name: bathyscaphe }
+      - { name: xtrafinder }
+      - { name: vlc }
+      - { name: font-roboto }
+      - { name: font-noto-sans-japanese }
+      - { name: font-noto-sans }
+      - { name: font-noto-serif }
+      - { name: font-source-han-code-jp }
+      - { name: spectacle }
+    npm_packages:
+      - grunt-cli
+      - gulp
+      - bower
+      - coffee-script
+      - karma
+      - browserify
+      - typescript
+      - babel
+    atom_packages_packages:
+      - japanese-wrap
+      - project-manager
+      - open-recent
+      - autocomplete-plus
+      - file-icons
+      - minimap
+      - markdown-writer
+      - autoclose-html
+      - editorconfig
+      - japan-util
+      - symbols-tree-view
+      - quick-highlight
+      - show-ideographic-space
+      - git-plus
+    gem_packages:
+      - { name: sass }
+      - { name: compass }
+      # - { name: animation }
+      - { name: ceaser-easing }
+
+  tasks:
+    - name: homebrew の tap リポジトリを追加
+      homebrew_tap: tap={{ item }} state=present
+      with_items: homebrew_taps
+
+    - name: homebrew をアップデート
+      homebrew: update_homebrew=yes
+
+    # brew
+    - name: brew パッケージをインストール
+      homebrew: >
+        name={{ item.name }}
+        state={{ item.state | default('latest') }}
+        install_options={{
+          item.install_options | default() | join(',')
+          if item.install_options is not string
+          else item.install_options
+        }}
+      with_items: homebrew_packages
+      register: brew_result
+    - name: brew パッケージの情報保存先ディレクトリを作成
+      file: path=brew_info state=directory
+    - name: brew パッケージの情報を保存
+      shell: brew info {{ item }} > brew_info/{{ item }}
+      with_items: brew_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list
+
+    # cask
+    - name: homebrew-cask のインストール
+      homebrew: name=brew-cask state=latest
+    - name: cask パッケージをインストール
+      homebrew_cask: name={{ item.name }} state={{ item.state|default('installed') }}
+      with_items: homebrew_cask_packages
+      register: cask_result
+    - name: cask パッケージの情報保存先ディレクトリを作成
+      file: path=cask_info state=directory
+    - name: cask パッケージの情報を保存
+      shell: brew cask info {{ item }} > cask_info/{{ item }}
+      with_items: cask_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list
+
+    # oh-my-zsh
+    - name: oh-my-zsh のインストール
+      shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+      args:
+        creates: ~/.oh-my-zsh/
+
+    # Ricty
+    - name: xquartz のインストール (for Ricty)
+      homebrew_cask: name=xquartz
+    - name: fontforge のインストール (for Ricty)
+      homebrew: name=fontforge
+    - name: Ricty のインストール
+      homebrew: name=ricty
+    - name: 生成されたフォントファイルをコピー
+      shell: cp -f $(brew --cellar ricty)/*/share/fonts/Ricty*.ttf ~/Library/Fonts/
+      args:
+        creates: ~/Library/Fonts/Ricty-Bold.ttf
+      notify: run fc-cache
+
+    # node
+    - name: node stable をインストール
+      shell: nodebrew selfupdate; nodebrew install-binary stable; nodebrew use stable
+      # when node|failed
+    - name: npm package をインストール
+      npm: name={{item}} global=yes
+      with_items: npm_packages
+    # gem
+    - name: gem package をインストール
+      gem: name={{item.name}}
+      with_items: gem_packages
+    - name: gem package をインストール2
+      shell: sudo gem install animation --pre
+
+  handlers:
+    - name: run fc-cache
+      shell: fc-cache -vf
+
+  roles:
+    - hnakamur.atom-packages
