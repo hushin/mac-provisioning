@@ -43,6 +43,7 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 ```
 ansible-playbook -i hosts -vv localhost.yml
+ansible-playbook -i hosts -vv frontend.yml
 ```
 
 #### memo
