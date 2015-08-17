@@ -179,20 +179,6 @@
         creates: ~/Library/Fonts/Ricty-Bold.ttf
       notify: run fc-cache
 
-    # node
-    - name: node stable をインストール
-      shell: nodebrew selfupdate; nodebrew install-binary stable; nodebrew use stable
-      # when node|failed
-    - name: npm package をインストール
-      npm: name={{item}} global=yes
-      with_items: npm_packages
-    # gem
-    - name: gem package をインストール
-      gem: name={{item.name}}
-      with_items: gem_packages
-    - name: gem package をインストール2
-      shell: sudo gem install animation --pre
-
   handlers:
     - name: run fc-cache
       shell: fc-cache -vf
