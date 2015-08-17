@@ -65,12 +65,15 @@
     homebrew_cask_packages:
       - { name: emacs-mac }
       - { name: dropbox }
+      - { name: copy }
+      - { name: coteditor }
       - { name: 1password }
       - { name: iterm2 }
       - { name: google-japanese-ime }
       - { name: grandperspective }
       - { name: firefox }
       - { name: google-chrome }
+      - { name: opera }
       - { name: adobe-reader }
       - { name: java }
       - { name: skype }
@@ -85,6 +88,7 @@
       - { name: skitch }
       - { name: seashore }
       - { name: atom }
+      - { name: brackets }
       - { name: kobito }
       # - { name: webstorm }
       # - { name: phpstorm }
@@ -107,6 +111,9 @@
       - { name: bathyscaphe }
       - { name: xtrafinder }
       - { name: vlc }
+      - { name: mplayerx }
+      - { name: xmind }
+      - { name: blender }
       - { name: font-roboto }
       - { name: font-noto-sans-japanese }
       - { name: font-noto-sans }
