@@ -77,7 +77,7 @@
       - { name: adobe-reader }
       - { name: java }
       - { name: skype }
-      # - { name: slack }
+      - { name: slack }
       - { name: sourcetree }
       - { name: github-desktop }
       # - { name: gitx }
