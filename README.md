@@ -46,6 +46,21 @@ ansible-playbook -i hosts -vv localhost.yml
 ansible-playbook -i hosts -vv frontend.yml
 ```
 
+### Quick Look
+
+Quick Lookで選択できるようにするコマンド
+```
+defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder
+```
+
+文字化け対策
+
+```
+cd ~/Library/QuickLook/QLColorCode.qlgenerator/Contents/Resources
+sed -i -e 's|reader=(cat $target)|reader=(/usr/local\/bin/nkf -w -Lu $target)|' colorize.sh
+```
+
+
 #### memo
 
 すでにnodeをbrew install している場合は uninstall しておく

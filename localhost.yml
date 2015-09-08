@@ -120,6 +120,16 @@
       - { name: font-noto-serif }
       - { name: font-source-han-code-jp }
       - { name: spectacle }
+      - { name: qlcolorcode }
+      - { name: qlstephen }
+      - { name: qlmarkdown }
+      - { name: quicklook-json }
+      - { name: qlprettypatch }
+      - { name: quicklook-csv }
+      - { name: betterzipql }
+      - { name: qlimagesize }
+      - { name: webpquicklook }
+      - { name: suspicious-package }
 
   tasks:
     - name: homebrew の tap リポジトリを追加
