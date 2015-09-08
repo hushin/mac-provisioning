@@ -73,3 +73,4 @@ nodebrew で失敗するとき、 ~/.nodebrew/src のディレクトリを作っ
 ### TODO
 
 - dotfilesなどリポジトリで管理したい
+- playbook 一発で動くように 書く
