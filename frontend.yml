@@ -12,13 +12,15 @@
       - browserify
       - typescript
       - babel
+      - tsd
+      - dtsm
+      - tslint
+      - yo
     atom_packages_packages:
-      - japanese-wrap
       - project-manager
       - open-recent
       - autocomplete-plus
       - file-icons
-      - minimap
       - markdown-writer
       - autoclose-html
       - editorconfig
@@ -27,6 +29,12 @@
       - quick-highlight
       - show-ideographic-space
       - git-plus
+      - atom-beautify
+      - atom-typescript
+      - linter
+      - linter-tslint
+      - emmet
+      #   - japanese-wrap
     gem_packages:
       - { name: sass }
       - { name: compass }
