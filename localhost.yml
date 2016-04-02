@@ -35,18 +35,18 @@
       - { name: mysql }
       - { name: sqlite }
       - { name: redis }
-      - { name: imagemagick }
       - { name: xz }
       - { name: nodebrew }
       - { name: tmux }
       - { name: reattach-to-user-namespace }
       - { name: phantomjs }
-      - { name: graphviz }
       - { name: autojump }
       - { name: gibo }
       - { name: source-highlight }
       - { name: trash }
       - { name: ghq }
+      # - { name: graphviz }
+      # - { name: imagemagick }
       # - { name: flow }
       # - { name: socat }
       # - { name: w3m }
@@ -65,7 +65,6 @@
     homebrew_cask_packages:
       - { name: emacs-mac }
       - { name: dropbox }
-      - { name: copy }
       - { name: coteditor }
       - { name: 1password }
       - { name: iterm2 }
@@ -116,7 +115,6 @@
       - { name: blender }
       - { name: font-roboto }
       - { name: font-noto-sans-japanese }
-      - { name: font-noto-sans }
       - { name: font-noto-serif }
       - { name: font-source-han-code-jp }
       - { name: spectacle }
@@ -130,6 +128,7 @@
       - { name: qlimagesize }
       - { name: webpquicklook }
       - { name: suspicious-package }
+      - { name: hocus-focus }
 
   tasks:
     - name: homebrew の tap リポジトリを追加
@@ -169,12 +168,6 @@
     - name: cask パッケージの情報を保存
       shell: brew cask info {{ item }} > cask_info/{{ item }}
       with_items: cask_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list
-
-    # oh-my-zsh
-    - name: oh-my-zsh のインストール
-      shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-      args:
-        creates: ~/.oh-my-zsh/
 
     # Ricty
     - name: xquartz のインストール (for Ricty)
