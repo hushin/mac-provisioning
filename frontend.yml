@@ -7,15 +7,18 @@
       - grunt-cli
       - gulp
       - bower
-      - coffee-script
-      - karma
       - browserify
-      - typescript
       - babel
-      - tsd
-      - dtsm
-      - tslint
-      - yo
+      # - coffee-script
+      - static-server
+      - init-package-json-parcel
+      - hexo-cli
+      # - karma
+      # - typescript
+      # - tsd
+      # - dtsm
+      # - tslint
+      # - yo
     atom_packages_packages:
       - project-manager
       - open-recent
@@ -32,8 +35,12 @@
       - atom-beautify
       - atom-typescript
       - linter
-      - linter-tslint
+      - git-time-machine
+      - git-diff-details
+      - git-blame
+      # - linter-tslint
       - emmet
+      - tablr
       #   - japanese-wrap
     gem_packages:
       - { name: sass }
