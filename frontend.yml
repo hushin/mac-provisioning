@@ -7,12 +7,12 @@
       - grunt-cli
       - gulp
       - bower
-      - browserify
-      - babel
+      # - browserify
+      # - babel
       # - coffee-script
       - static-server
       - init-package-json-parcel
-      - hexo-cli
+      # - hexo-cli
       # - karma
       # - typescript
       # - tsd

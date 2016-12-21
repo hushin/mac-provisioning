@@ -114,7 +114,6 @@
       - { name: xmind }
       - { name: blender }
       - { name: font-roboto }
-      - { name: font-noto-sans-japanese }
       - { name: font-noto-serif }
       - { name: font-source-han-code-jp }
       - { name: spectacle }
