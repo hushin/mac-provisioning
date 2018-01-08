@@ -51,7 +51,7 @@
   tasks:
     # node
     - name: node stable をインストール
-      shell: nodebrew selfupdate; nodebrew install-binary stable; nodebrew use stable
+      shell: nodebrew selfupdate; nodebrew install-binary v8.x; nodebrew use v8.x
       # when node|failed
     - name: npm package をインストール
       npm: name={{item}} global=yes

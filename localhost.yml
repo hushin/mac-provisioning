@@ -16,7 +16,7 @@
       - { name: openssl }
       - { name: openssl, state: linked, install_options: force }
       - { name: python }
-      - { name: ansible }
+      # - { name: ansible }
       - { name: coreutils }
       - { name: git }
       - { name: zsh, install_options: disable-etcdir }
@@ -32,18 +32,19 @@
       - { name: rbenv }
       - { name: ruby-build }
       - { name: lha }
-      - { name: mysql }
-      - { name: sqlite }
-      - { name: redis }
-      - { name: xz }
+      # - { name: mysql }
+      # - { name: sqlite }
+      # - { name: redis }
+      # - { name: xz }
       - { name: nodebrew }
       - { name: tmux }
       - { name: reattach-to-user-namespace }
-      - { name: phantomjs }
+      # - { name: phantomjs }
       - { name: autojump }
       - { name: gibo }
       - { name: source-highlight }
       - { name: trash }
+      - { name: direnv }
       - { name: ghq }
       # - { name: graphviz }
       # - { name: imagemagick }
@@ -61,9 +62,8 @@
       # - { name: fish }
       # - { name: mercurial }
       # - { name: rlwrap }
-      # - { name: direnv }
     homebrew_cask_packages:
-      - { name: emacs-mac }
+      # - { name: emacs-mac }
       - { name: dropbox }
       - { name: coteditor }
       - { name: 1password }
@@ -72,47 +72,48 @@
       - { name: grandperspective }
       - { name: firefox }
       - { name: google-chrome }
-      - { name: opera }
+      # - { name: opera }
       - { name: adobe-reader }
       - { name: java }
       - { name: skype }
       - { name: slack }
       - { name: sourcetree }
-      - { name: github-desktop }
+      # - { name: github-desktop }
       # - { name: gitx }
       - { name: karabiner }
-      - { name: seil }
+      # - { name: seil }
       - { name: flux }
       - { name: dash }
       - { name: skitch }
-      - { name: seashore }
+      # - { name: seashore }
       - { name: atom }
-      - { name: brackets }
+      # - { name: brackets }
       - { name: kobito }
       # - { name: webstorm }
       # - { name: phpstorm }
       # - { name: intellij-idea }
       # - { name: vagrant }
       # - { name: virtualbox }
-      - { name: pandoc }
+      # - { name: pandoc }
       - { name: alfred }
       - { name: cooviewer }
       - { name: clipmenu }
       - { name: evernote }
       # - { name: android-studio }
       # - { name: genymotion }
-      # - { name: sublime-text } # 3がほしい
+      - { name: sublime-text3 }
       # - { name: startninja }
       # - { name: pckeyboardhack }
-      - { name: bettertouchtool }
+      # - { name: bettertouchtool }
       - { name: licecap }
-      - { name: electron }
+      # - { name: electron }
       - { name: bathyscaphe }
-      - { name: xtrafinder }
+      # - { name: xtrafinder }
       - { name: vlc }
       - { name: mplayerx }
       - { name: xmind }
-      - { name: blender }
+      - { name: vscode }
+      # - { name: blender }
       - { name: font-roboto }
       - { name: font-noto-serif }
       - { name: font-source-han-code-jp }
@@ -127,7 +128,7 @@
       - { name: qlimagesize }
       - { name: webpquicklook }
       - { name: suspicious-package }
-      - { name: hocus-focus }
+      # - { name: hocus-focus }
 
   tasks:
     - name: homebrew の tap リポジトリを追加

@@ -5,6 +5,8 @@
 
 ## 使い方
 
+先に https://github.com/hushin/dotfiles を設定しておく。
+
 ### 準備
 
 ```
@@ -13,7 +15,8 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew doctor
 brew update
 brew install python
-brew install ansible
+brew tap homebrew/versions
+brew install ansible@1.9
 
 mkdir .mac-provisioning && cd $_
 git clone git@github.com:hushin/mac-provisioning.git .
@@ -22,21 +25,6 @@ git clone git@github.com:hushin/mac-provisioning.git .
 ```
 ansible-galaxy install --roles-path=. hnakamur.atom-packages
 ```
-
-bash
-```
-echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.bash_profile
-source ~/.bash_profile
-```
-
-zshで動かすとき
-~/.zshrc あたりに追記
-```
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-```
-
-`source ~/.zshrc`
 
 ### 自動化開始
 
@@ -72,5 +60,4 @@ nodebrew で失敗するとき、 ~/.nodebrew/src のディレクトリを作っ
 
 ### TODO
 
-- dotfilesなどリポジトリで管理したい
 - playbook 一発で動くように 書く
